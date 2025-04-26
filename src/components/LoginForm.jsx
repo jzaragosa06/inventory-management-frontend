@@ -16,8 +16,10 @@ const LoginForm = ({ onSuccess }) => {
       const response = await api.post('/auth/login', formData);
       const { access_token } = response.data;
       // Store token in localStorage
-      localStorage.setItem('token', access_token);
-      // Update axios default headers
+      localStorage.setItem('user', JSON.stringify({
+        ...response.data.user,
+        role: response.data.user.role
+      }));
       api.defaults.headers.common['Authorization'] = `Bearer ${access_token}`;
       onSuccess?.();
     } catch (err) {
