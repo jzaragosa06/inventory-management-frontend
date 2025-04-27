@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import LoginForm from "../components/LoginForm";
 import RegisterForm from "../components/RegisterForm";
 import Button from "../components/Button";
+import { Link, useNavigate } from "react-router-dom";
 
 function Auth() {
     const [isLogin, setIsLogin] = useState(true);
-
+    const navigate = useNavigate(); 
     return (
         <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
             <div className="max-w-md w-full space-y-8">
@@ -27,6 +28,7 @@ function Auth() {
                         <LoginForm onSuccess={() => {
                             // Handle successful login (e.g., redirect to dashboard)
                             console.log('Login successful');
+                            navigate('/home'); 
                         }} />
                     ) : (
                         <RegisterForm onSuccess={() => {

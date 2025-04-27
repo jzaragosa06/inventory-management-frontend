@@ -9,8 +9,8 @@ const ProductTable = ({ products, onDelete, onEdit }) => {
                     <tr>
                         <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
                         <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Category</th>
                         <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Price</th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Stock</th>
                         <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
                     </tr>
                 </thead>
@@ -20,7 +20,7 @@ const ProductTable = ({ products, onDelete, onEdit }) => {
                             <td className="px-6 py-4 whitespace-nowrap">{product.name}</td>
                             <td className="px-6 py-4">{product.description}</td>
                             <td className="px-6 py-4 whitespace-nowrap">${product.price}</td>
-                            <td className="px-6 py-4 whitespace-nowrap">{product.stock}</td>
+                            <td className="px-6 py-4 whitespace-nowrap">{product.category}</td>
                             <td className="px-6 py-4 whitespace-nowrap">
                                 {hasRole([UserRole.AUDITOR]) && (
                                     <button

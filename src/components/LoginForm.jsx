@@ -15,15 +15,25 @@ const LoginForm = ({ onSuccess }) => {
     try {
       const response = await api.post('/auth/login', formData);
       const { access_token } = response.data;
-      // Store token in localStorage
+
+      //TODO: we will be extracting the user infos from the token
+      const payload = JSON.parse(atob(access_token.split('.')[1]));
+
+      localStorage.setItem('token', access_token);
       localStorage.setItem('user', JSON.stringify({
-        ...response.data.user,
-        role: response.data.user.role
+        email: payload.email,
+        role: payload.role,
+        sub: payload.sub
       }));
+
+      // TODO: Set the token in axios defaults
       api.defaults.headers.common['Authorization'] = `Bearer ${access_token}`;
+
+      //TODO: redirect to the homepage once authentication is complete
       onSuccess?.();
     } catch (err) {
-      setError('Invalid email or password');
+      console.error('Login error:', err);
+      setError(err.response?.data?.message || 'Invalid email or password');
     }
   };
 

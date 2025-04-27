@@ -5,7 +5,7 @@ const ProductForm = ({ onSubmit, initialData = null }) => {
         name: initialData?.name || '',
         description: initialData?.description || '',
         price: initialData?.price || '',
-        stock: initialData?.stock || ''
+        category: initialData?.category || ''
     });
 
     const handleSubmit = (e) => {
@@ -35,21 +35,21 @@ const ProductForm = ({ onSubmit, initialData = null }) => {
                 />
             </div>
             <div>
-                <label className="block text-sm font-medium text-gray-700">Price</label>
+                <label className="block text-sm font-medium text-gray-700">category</label>
                 <input
-                    type="number"
-                    value={formData.price}
-                    onChange={(e) => setFormData({ ...formData, price: e.target.value })}
+                    type="text"
+                    value={formData.category}
+                    onChange={(e) => setFormData({ ...formData, category: e.target.value })}
                     className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                     required
                 />
             </div>
             <div>
-                <label className="block text-sm font-medium text-gray-700">Stock</label>
+                <label className="block text-sm font-medium text-gray-700">Price</label>
                 <input
                     type="number"
-                    value={formData.stock}
-                    onChange={(e) => setFormData({ ...formData, stock: e.target.value })}
+                    value={formData.price}
+                    onChange={(e) => setFormData({ ...formData, price: e.target.value })}
                     className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                     required
                 />
