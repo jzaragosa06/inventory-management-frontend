@@ -80,15 +80,6 @@ function Home() {
                     Product Management
                 </h1>
 
-
-                {hasRole([UserRole.ADMIN, UserRole.USER]) && (
-                    <button
-                        onClick={() => setShowForm(true)}
-                        className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 ml-4"
-                    >
-                        Add Product
-                    </button>
-                )}
             </div>
 
 
@@ -107,7 +98,17 @@ function Home() {
                     >
                         Search
                     </button>
+
+                    {hasRole([UserRole.ADMIN, UserRole.USER]) && (
+                        <button
+                            onClick={() => setShowForm(true)}
+                            className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 ml-4"
+                        >
+                            Add Product
+                        </button>
+                    )}
                 </div>
+
             </div>
 
             {(showForm || editingProduct) && (
