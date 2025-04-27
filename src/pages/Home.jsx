@@ -2,13 +2,16 @@ import React, { useState, useEffect } from "react";
 import api from "../api/axios";
 import ProductTable from "../components/ProductTable";
 import ProductForm from "../components/ProductForm";
-import { UserRole, hasRole } from "../utils/auth";
+import { UserRole, hasRole, getUser } from "../utils/auth";
 
 function Home() {
     const [products, setProducts] = useState([]);
     const [showForm, setShowForm] = useState(false);
     const [editingProduct, setEditingProduct] = useState(null);
-    const [searchQuery, setSearchQuery] = useState("");
+    const [searchQuery, setSearchQuery] = useState('');
+    const [user] = useState(getUser());
+
+
 
     const fetchProducts = async () => {
         try {
@@ -66,16 +69,28 @@ function Home() {
     return (
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
             <div className="mb-8 flex justify-between items-center">
-                <h1 className="text-3xl font-bold text-gray-900">Product Management</h1>
+
+                <div className="flex flex-col text-sm text-gray-700">
+                    <p className="font-semibold">{user?.email}</p>
+                    <p className="text-gray-500 capitalize">{user?.role}</p>
+                </div>
+
+
+                <h1 className="text-3xl font-bold text-gray-900 text-center flex-1">
+                    Product Management
+                </h1>
+
+
                 {hasRole([UserRole.ADMIN, UserRole.USER]) && (
                     <button
                         onClick={() => setShowForm(true)}
-                        className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700"
+                        className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 ml-4"
                     >
                         Add Product
                     </button>
                 )}
             </div>
+
 
             <div className="mb-6">
                 <div className="flex gap-4">
