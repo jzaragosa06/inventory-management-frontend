@@ -19,7 +19,7 @@ const ProductTable = ({ products, onDelete, onEdit }) => {
                         <tr key={product.id}>
                             <td className="px-6 py-4 whitespace-nowrap">{product.name}</td>
                             <td className="px-6 py-4">{product.description}</td>
-                            <td className="px-6 py-4 whitespace-nowrap">${product.price}</td>
+                            <td className="px-6 py-4 whitespace-nowrap">{product.price}</td>
                             <td className="px-6 py-4 whitespace-nowrap">{product.category}</td>
                             <td className="px-6 py-4 whitespace-nowrap">
                                 {hasRole([UserRole.AUDITOR]) && (
