@@ -52,6 +52,8 @@ const ProductForm = ({ onSubmit, initialData = null }) => {
                     onChange={(e) => setFormData({ ...formData, price: e.target.value })}
                     className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                     required
+                    step="0.01"
+                    min="0"
                 />
             </div>
             <button

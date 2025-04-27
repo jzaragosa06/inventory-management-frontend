@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Input from './Input';
 import Button from './Button';
 import api from '../api/axios';
+import { useNavigate } from 'react-router-dom';
 
 const LoginForm = ({ onSuccess }) => {
   const [formData, setFormData] = useState({
@@ -9,6 +10,7 @@ const LoginForm = ({ onSuccess }) => {
     password: '',
   });
   const [error, setError] = useState('');
+  const navigate = useNavigate(); 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -31,6 +33,8 @@ const LoginForm = ({ onSuccess }) => {
 
       //TODO: redirect to the homepage once authentication is complete
       onSuccess?.();
+
+
     } catch (err) {
       console.error('Login error:', err);
       setError(err.response?.data?.message || 'Invalid email or password');
