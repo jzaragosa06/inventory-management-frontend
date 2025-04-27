@@ -3,6 +3,7 @@ import api from "../api/axios";
 import ProductTable from "../components/ProductTable";
 import ProductForm from "../components/ProductForm";
 import { UserRole, hasRole, getUser } from "../utils/auth";
+import { useNavigate } from "react-router-dom";
 
 function Home() {
     const [products, setProducts] = useState([]);
@@ -10,7 +11,7 @@ function Home() {
     const [editingProduct, setEditingProduct] = useState(null);
     const [searchQuery, setSearchQuery] = useState('');
     const [user] = useState(getUser());
-
+    const navigate = useNavigate(); 
 
 
     const fetchProducts = async () => {
@@ -66,6 +67,12 @@ function Home() {
         }
     };
 
+    const handleLogout = () => {
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+        navigate('/');
+    };
+
     return (
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
             <div className="mb-8 flex justify-between items-center">
@@ -73,6 +80,9 @@ function Home() {
                 <div className="flex flex-col text-sm text-gray-700">
                     <p className="font-semibold">{user?.email}</p>
                     <p className="text-gray-500 capitalize">{user?.role}</p>
+                    <div onClick={handleLogout} className="text-sm font-medium text-red-500 underline cursor-grab">
+                        Log out
+                    </div>
                 </div>
 
 
